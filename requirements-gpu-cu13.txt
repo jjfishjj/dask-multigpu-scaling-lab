@@ -1,0 +1,5 @@
+--extra-index-url https://pypi.nvidia.com
+cupy-cuda13x>=13,<14
+dask[distributed]>=2026.8,<2026.9
+dask-cuda==26.8.*
+ucxx-cu13==0.52.*

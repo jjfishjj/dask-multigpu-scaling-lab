@@ -17,6 +17,15 @@ python src/scaling_model.py --workers 4 --single-seconds 100 --distributed-secon
 python src/run_dask_gpu.py --workers 4 --elements 100000000 --chunk-size 5000000
 ```
 
+推薦的可重現執行方式：
+
+```bash
+docker build -t nvidia-lab/dask .
+docker run --rm --gpus all --ipc=host --ulimit memlock=-1:-1 nvidia-lab/dask --workers 4 --elements 100000000
+```
+
+Dockerfile 固定 RAPIDS 26.08、CUDA 13、Python 3.12；CUDA 12 使用 `requirements-gpu.txt`，CUDA 13 使用 `requirements-gpu-cu13.txt`。
+
 程式建立 `LocalCUDACluster`、以 RMM pool 配置記憶體並透過 UCX 執行；輸出 worker、資料量、chunk 與耗時 JSON。自架 GPU Runner 可手動執行 `gpu.yml`。
 
 ## 驗收重點

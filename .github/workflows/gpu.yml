@@ -1,0 +1,11 @@
+name: Dask multi-GPU benchmark
+on: {workflow_dispatch: {}}
+jobs:
+  benchmark:
+    runs-on: [self-hosted, linux, x64, gpu]
+    steps:
+      - uses: actions/checkout@v4
+      - run: nvidia-smi
+      - run: python src/run_dask_gpu.py --elements 100000000 | tee dask-result.json
+      - uses: actions/upload-artifact@v4
+        with: {name: dask-result, path: dask-result.json}

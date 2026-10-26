@@ -1,0 +1,4 @@
+cupy-cuda12x>=13,<14
+dask[distributed]>=2025.1
+dask-cuda>=25,<27
+ucx-py-cu12>=0.40
